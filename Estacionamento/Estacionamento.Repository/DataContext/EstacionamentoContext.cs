@@ -8,14 +8,16 @@ using Microsoft.EntityFrameworkCore;
 namespace Estacionamento.Repository.DataContext {
 
   public class EstacionamentoDataContext : DbContext {
-    public DbSet<CarroDomain> Carro { get; set; }
-    public DbSet<PessoaDomain> Pessoa { get; set; }
-    public DbSet<ManobristaDomain> Manobrista { get; set; }
 
-    public EstacionamentoDataContext (DbContextOptions<EstacionamentoDataContext> options):
+      public EstacionamentoDataContext (DbContextOptions<EstacionamentoDataContext> options):
       base (options) {
 
       }
+
+    public DbSet<CarroDomain> Carro { get; set; }
+    public DbSet<PessoaDomain> Pessoa { get; set; }
+    public DbSet<ManobristaDomain> Manobrista { get; set; }
+ 
 
     protected override void OnModelCreating (ModelBuilder modelBuilder) {
       modelBuilder.Ignore<Notification> ();
