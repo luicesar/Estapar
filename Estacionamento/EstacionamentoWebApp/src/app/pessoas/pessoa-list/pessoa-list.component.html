@@ -1,0 +1,20 @@
+<table class="table table-bordered table-hover">
+<thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Cpf</th>
+      <th scope="col">Data Nascimento</th>
+      <th scope="col">Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let pessoa of service.list">
+    <td (click)="populateForm(pessoa)">{{pessoa.id}}</td>
+    <td (click)="populateForm(pessoa)">{{pessoa.nome}}</td>
+    <td (click)="populateForm(pessoa)">{{pessoa.cpf}}</td>
+    <td (click)="populateForm(pessoa)">{{pessoa.dataNascimento | date:'yyyy-MM-dd'}}</td>
+    <td class="text-center"><button (click)="onDelete(pessoa.id)" class="btn btn-sm btn-outline-danger">X</button></td>
+  </tr>
+  </tbody>
+</table>

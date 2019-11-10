@@ -1,0 +1,20 @@
+<table class="table table-bordered table-hover">
+<thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Modelo</th>
+      <th scope="col">Placa</th>
+      <th scope="col">Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let car of service.list">
+    <td (click)="populateForm(car)">{{car.id}}</td>
+    <td (click)="populateForm(car)">{{car.marca}}</td>
+    <td (click)="populateForm(car)">{{car.modelo}}</td>
+    <td (click)="populateForm(car)">{{car.placa}}</td>
+    <td class="text-center"><button (click)="onDelete(car.id)" class="btn btn-sm btn-outline-danger">X</button></td>
+  </tr>
+  </tbody>
+</table>
