@@ -1,3 +1,28 @@
-<p>
-  manobrista works!
-</p>
+<form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+  <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
+  <div class="input-group mb-3">
+   <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Pessoa</label>
+   </div>
+    <input type="hidden" name="pessoaId" #pessoaId="ngModel" [(ngModel)]="service.formData.pessoaId" class="form-control" required>
+    <select  class="custom-select" (change)="changePessoa($event)" >
+      <option value="0">Selecione uma pessoa</option>
+      <option [selected]="service.formData.pessoaId" *ngFor="let pessoa of servicePessoa.list" [value]="pessoa.id">{{pessoa.nome}}</option>
+    </select>
+  </div>
+
+  <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Carro</label>
+      </div>
+      <input type="hidden" name="carroId" #carroID="ngModel" [(ngModel)]="service.formData.carroId" class="form-control" required>
+      <select class="custom-select" (change)="changeCarro($event)">
+          <option value="0">Selecione um carro</option>
+          <option [selected]="service.formData.carroId" *ngFor="let carro of serviceCarro.list" [value]="carro.id">{{carro.modelo}}</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" [disabled]="service.formData.carroId === 0 || service.formData.pessoaId === 0" class="btn btn-lg btn-block">SALVAR</button>
+  </div>
+</form>

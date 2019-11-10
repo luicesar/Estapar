@@ -30,9 +30,9 @@ export class PessoaComponent implements OnInit {
     };
   }
 
-  parseDate(dateString: string): Date {
+  parseDate(dateString: string): string {
     if (dateString) {
-      return new Date(dateString);
+      return new Date(dateString).toISOString().split("T")[0];
     }
     return null;
   }

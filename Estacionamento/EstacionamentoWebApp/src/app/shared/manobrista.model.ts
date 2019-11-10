@@ -1,14 +1,9 @@
-import { Carro } from "./carro.model";
-import { Pessoa } from "./pessoa.model";
-
 export class Manobrista {
   id: number;
-  pessoa: Array<Pessoa>;
-  carro: Array<Carro>;
+  pessoaId: number;
+  pessoaNome: string;
+  carroId: number;
+  marcaNome: string;
+  modeloNome: string;
   dataCriacao: string;
-
-  constructor() {
-    this.pessoa = new Array<Pessoa>();
-    this.carro = new Array<Carro>();
-  }
 }

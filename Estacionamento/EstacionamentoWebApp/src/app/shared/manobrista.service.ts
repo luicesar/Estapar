@@ -18,7 +18,7 @@ export class ManobristaService {
 
   refreshList() {
     this.http
-      .get(this.rootURL + "/Manobrista")
+      .get(this.rootURL + "/Manobrista/ListaComCarroPessoa")
       .toPromise()
       .then(res => (this.list = res as Manobrista[]));
   }
