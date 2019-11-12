@@ -16,6 +16,7 @@ import { Manobrista } from "src/app/shared/manobrista.model";
 export class ManobristaComponent implements OnInit {
   private dataHoje: string;
   public manobrista: Manobrista;
+  public carroSelecionadoId: number;
 
   constructor(
     private service: ManobristaService,
@@ -29,14 +30,12 @@ export class ManobristaComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm();
-    this.serviceCarro.refreshList();
-    this.servicePessoa.refreshList();
   }
 
   changeCarro(e) {
     this.manobrista.carroId = e.target.value;
     this.service.formData.carroId = e.target.value;
-
+    this.carroSelecionadoId = e.target.value;
     console.log(e.target.value);
   }
 
@@ -58,19 +57,21 @@ export class ManobristaComponent implements OnInit {
       dataCriacao: this.dataHoje
     };
 
+    this.serviceCarro.refreshList();
+    this.servicePessoa.refreshList();
+
     this.manobrista = new Manobrista();
     this.manobrista.pessoaId = 0;
     this.manobrista.carroId = 0;
+
     this.manobrista.dataCriacao = this.dataHoje;
   }
 
   onSubmit(form: NgForm) {
+    if (form.value.id === null) form.value.id = 0;
+
     form.value.pessoaId = this.service.formData.pessoaId;
     form.value.carroId = this.service.formData.carroId;
-
-    //form.value.pessoaId = this.manobrista.pessoaId;
-    //form.value.carroId = this.manobrista.carroId;
-
     form.value.dataCriacao = this.dataHoje;
 
     if (form.value.id === 0) this.insertRecord(form);

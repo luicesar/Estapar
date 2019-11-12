@@ -7,10 +7,9 @@
     <input type="hidden" name="pessoaId" #pessoaId="ngModel" [(ngModel)]="service.formData.pessoaId" class="form-control" required>
     <select  class="custom-select" (change)="changePessoa($event)" >
       <option value="0">Selecione uma pessoa</option>
-      <option [selected]="service.formData.pessoaId" *ngFor="let pessoa of servicePessoa.list" [value]="pessoa.id">{{pessoa.nome}}</option>
+      <option *ngFor="let pessoa of servicePessoa.list" [value]="pessoa.id" [attr.selected]="pessoa.id == service.formData.pessoaId ? true : null">{{ pessoa.nome  }}</option>
     </select>
   </div>
-
   <div class="input-group mb-3">
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Carro</label>
@@ -18,7 +17,7 @@
       <input type="hidden" name="carroId" #carroID="ngModel" [(ngModel)]="service.formData.carroId" class="form-control" required>
       <select class="custom-select" (change)="changeCarro($event)">
           <option value="0">Selecione um carro</option>
-          <option [selected]="service.formData.carroId" *ngFor="let carro of serviceCarro.list" [value]="carro.id">{{carro.modelo}}</option>
+          <option *ngFor="let carro of serviceCarro.list" [value]="carro.id" [attr.selected]="carro.id == service.formData.carroId ? true : null">{{ carro.modelo  }}</option>
       </select>
   </div>
 

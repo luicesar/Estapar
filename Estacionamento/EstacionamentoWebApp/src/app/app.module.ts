@@ -1,4 +1,6 @@
 import { CarroService } from "./shared/carro.service";
+import { PessoaService } from "./shared/pessoa.service";
+import { ManobristaService } from "./shared/manobrista.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -43,7 +45,7 @@ import { ManobristaListComponent } from './manobristas/manobrista-list/manobrist
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [CarroService],
+  providers: [CarroService, PessoaService, ManobristaService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
