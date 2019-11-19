@@ -1,12 +1,12 @@
-import { Manobrista } from "./../../shared/manobrista.model";
-import { Component, OnInit } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { ManobristaService } from "src/app/shared/manobrista.service";
+import { Manobrista } from './../../shared/manobrista.model';
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { ManobristaService } from 'src/app/shared/manobrista.service';
 
 @Component({
-  selector: "app-manobrista-list",
-  templateUrl: "./manobrista-list.component.html",
-  styleUrls: ["./manobrista-list.component.css"]
+  selector: 'app-manobrista-list',
+  templateUrl: './manobrista-list.component.html',
+  styleUrls: ['./manobrista-list.component.css']
 })
 export class ManobristaListComponent implements OnInit {
   private dataHoje: string;
@@ -25,10 +25,10 @@ export class ManobristaListComponent implements OnInit {
     this.service.formData = {
       id: 0,
       pessoaId: 0,
-      pessoaNome: "",
+      pessoaNome: '',
       carroId: 0,
-      marcaNome: "",
-      modeloNome: "",
+      marcaNome: '',
+      modeloNome: '',
       dataCriacao: this.dataHoje
     };
   }
@@ -38,10 +38,10 @@ export class ManobristaListComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    if (confirm("Deseja apagar o registro ?")) {
+    if (confirm('Deseja apagar o registro ?')) {
       this.service.deleteManobrista(id).subscribe(res => {
         this.service.refreshList();
-        this.toastr.warning("Registro apagado sucesso.", "Informação");
+        this.toastr.warning('Registro apagado sucesso.', 'Informação');
         this.resetForm();
       });
     }

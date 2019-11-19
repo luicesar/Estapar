@@ -1,17 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
-import { ManobristaService } from "src/app/shared/manobrista.service";
-import { CarroService } from "src/app/shared/carro.service";
-import { PessoaService } from "src/app/shared/pessoa.service";
-import { Carro } from "src/app/shared/carro.model";
-import { Pessoa } from "src/app/shared/pessoa.model";
-import { Manobrista } from "src/app/shared/manobrista.model";
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { ManobristaService } from 'src/app/shared/manobrista.service';
+import { CarroService } from 'src/app/shared/carro.service';
+import { PessoaService } from 'src/app/shared/pessoa.service';
+import { Manobrista } from 'src/app/shared/manobrista.model';
 
 @Component({
-  selector: "app-manobrista",
-  templateUrl: "./manobrista.component.html",
-  styleUrls: ["./manobrista.component.css"]
+  selector: 'app-manobrista',
+  templateUrl: './manobrista.component.html',
+  styleUrls: ['./manobrista.component.css']
 })
 export class ManobristaComponent implements OnInit {
   private dataHoje: string;
@@ -46,14 +44,16 @@ export class ManobristaComponent implements OnInit {
   }
 
   resetForm(form?: NgForm) {
-    if (form != null) form.resetForm();
+    if (form != null) {
+      form.resetForm();
+    }
     this.service.formData = {
       id: 0,
       pessoaId: 0,
-      pessoaNome: "",
+      pessoaNome: '',
       carroId: 0,
-      marcaNome: "",
-      modeloNome: "",
+      marcaNome: '',
+      modeloNome: '',
       dataCriacao: this.dataHoje
     };
 
@@ -68,19 +68,24 @@ export class ManobristaComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if (form.value.id === null) form.value.id = 0;
+    if (form.value.id === null) {
+      form.value.id = 0;
+    }
 
     form.value.pessoaId = this.service.formData.pessoaId;
     form.value.carroId = this.service.formData.carroId;
     form.value.dataCriacao = this.dataHoje;
 
-    if (form.value.id === 0) this.insertRecord(form);
-    else this.updateRecord(form);
+    if (form.value.id === 0) {
+      this.insertRecord(form);
+    } else {
+      this.updateRecord(form);
+    }
   }
 
   insertRecord(form: NgForm) {
     this.service.postManobrista(form.value).subscribe(res => {
-      this.toastr.success("Dados Salvo Com Sucesso", "Informação");
+      this.toastr.success('Dados Salvo Com Sucesso', 'Informação');
       this.resetForm(form);
       this.service.refreshList();
     });
@@ -88,7 +93,7 @@ export class ManobristaComponent implements OnInit {
 
   updateRecord(form: NgForm) {
     this.service.putManobrista(form.value).subscribe(res => {
-      this.toastr.info("Dados Salvo Com Sucesso", "Informação");
+      this.toastr.info('Dados Salvo Com Sucesso', 'Informação');
       this.resetForm(form);
       this.service.refreshList();
     });
